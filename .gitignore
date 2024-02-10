@@ -4,3 +4,9 @@
 .darglint
 .pre-commit-config.yaml
 .pylintrc
+
+color_custom.inx
+color_custom.py
+dpi90to96.inx
+dpi96to90.inx
+dpiswitcher.py
