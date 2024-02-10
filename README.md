@@ -1,0 +1,2 @@
+# Inkscape-Resize-Extension
+ 
