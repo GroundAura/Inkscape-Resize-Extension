@@ -1,5 +1,7 @@
 .idea/
 
+extensions - Shortcut.lnk
+
 .coveragerc
 .darglint
 .pre-commit-config.yaml
