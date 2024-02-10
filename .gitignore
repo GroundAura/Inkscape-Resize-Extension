@@ -1,1 +1,6 @@
 .idea/
+
+.coveragerc
+.darglint
+.pre-commit-config.yaml
+.pylintrc
