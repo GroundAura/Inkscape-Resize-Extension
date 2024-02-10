@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-      <name>DPI 90 to 96</name>
-      <id>org.inkscape.dpi90to96</id>
+      <name>AuraResize</name>
+      <id>temp.aura.resize</id>
         <param name="switcher" type="optiongroup" appearance="combo" gui-hidden="true">
-          <option value="0">DPI Switch from 90 to 96</option>
+          <option value="0">DPI Switch from 96 to 90</option>
         </param>
       <effect needs-live-preview="false">
         <object-type>all</object-type>
@@ -12,6 +12,6 @@
         </effects-menu>
       </effect>
       <script>
-        <command location="inx" interpreter="python">dpiswitcher.py</command>
+        <command location="inx" interpreter="python">auraresize.py</command>
       </script>
 </inkscape-extension>

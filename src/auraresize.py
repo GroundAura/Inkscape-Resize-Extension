@@ -258,9 +258,9 @@ class DPISwitcher(inkex.EffectExtension):
 
         svg = self.svg
         if svg.get("height"):
-            svg.set("height", str(height_doc))
+            svg.set("height", str(512.0))
         if svg.get("width"):
-            svg.set("width", str(width_doc))
+            svg.set("width", str(512.0))
 
         # update viewBox
         if svg.get("viewBox"):
@@ -364,8 +364,9 @@ class DPISwitcher(inkex.EffectExtension):
 
     def effect(self):
         svg = self.svg
+        testvar = float(svg.get("height"))
         if self.options.switcher == "0":
-            self.factor_a = 96.0 / 90.0
+            self.factor_a = 512.0 / testvar
             self.factor_b = 90.0 / 96.0
         svg.namedview.set("inkscape:document-units", "px")
         self.units = self.parse_length(svg.get("width"))[1]
