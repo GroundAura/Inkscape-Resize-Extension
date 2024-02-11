@@ -5,6 +5,12 @@
         <param name="switcher" type="optiongroup" appearance="combo" gui-hidden="true">
           <option value="0">DPI Switch from 96 to 90</option>
         </param>
+        <param name="size" type="optiongroup" appearance="radio" gui-text="Scale Document To:">
+            <option value="128">128 px</option>
+            <option value="512">512 px</option>
+            <option value="0">Custom Size</option>
+        </param>
+        <param name="customsize" type="string" gui-text="Custom Size (px):"></param>
       <effect needs-live-preview="false">
         <object-type>all</object-type>
         <effects-menu>

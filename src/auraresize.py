@@ -165,9 +165,9 @@ class DPISwitcher(inkex.EffectExtension):
     units = "px"
 
     def add_arguments(self, pars):
-        pars.add_argument(
-            "--switcher", type=str, default="0", help="Select the DPI switch you want"
-        )
+        pars.add_argument("--switcher", type=str, default="0", help="Select the DPI switch you want")
+        pars.add_argument("--size", type=float, default=128.0, help="Which size?")
+        pars.add_argument("--customsize", type=float, default=128.0, help="Custom size.")
 
     # dictionaries of unit to user unit conversion factors
     __uuconvLegacy = {
