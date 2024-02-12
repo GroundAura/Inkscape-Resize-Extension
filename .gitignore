@@ -2,6 +2,7 @@
 
 extensions - Shortcut.lnk
 
+inkex/
 .coveragerc
 .darglint
 .pre-commit-config.yaml
