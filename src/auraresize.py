@@ -171,20 +171,6 @@ class DPISwitcher(inkex.EffectExtension):
         pars.add_argument("--size", type=str, default="128", help="Which size?")
         pars.add_argument("--customsize", type=str, default=20, help="Custom size.")
 
-    def parse_arguments(self):
-        """Parse arguments to set variables."""
-        svg = self.svg
-        # self.current_height = float(svg.get("height"))
-        # self.current_width = float(svg.get("width"))
-        self.current_size = float(svg.get("height"))
-        if self.options.size == "128":
-            self.target_size = 128.0
-        if self.options.size == "512":
-            self.target_size = 512.0
-        if self.options.size == "custom":
-            self.target_size = float(self.options.customsize)
-        self.factor_a = self.target_size / self.current_size
-
     # dictionaries of unit to user unit conversion factors
     __uuconvLegacy = {
         "in": 90.0,
@@ -380,9 +366,17 @@ class DPISwitcher(inkex.EffectExtension):
 
     def effect(self):
         svg = self.svg
-        if self.options.switcher == "0":
-            self.factor_a = 96.0 / 90.0
-            self.factor_b = 90.0 / 96.0
+        self.current_size = float(svg.get("height"))
+        if self.options.size == "128":
+            self.target_size = 128.0
+        if self.options.size == "512":
+            self.target_size = 512.0
+        if self.options.size == "custom":
+            self.target_size = float(self.options.customsize)
+        self.factor_a = self.target_size / self.current_size
+        # if self.options.switcher == "0":
+            # self.factor_a = 96.0 / 90.0
+            # self.factor_b = 90.0 / 96.0
         svg.namedview.set("inkscape:document-units", "px")
         self.units = self.parse_length(svg.get("width"))[1]
         unit_exponent = 1.0
