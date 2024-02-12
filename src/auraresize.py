@@ -163,11 +163,27 @@ class DPISwitcher(inkex.EffectExtension):
     factor_a = 90.0 / 96.0
     factor_b = 96.0 / 90.0
     units = "px"
+    current_size = 100.0
+    target_size = 128.0
 
     def add_arguments(self, pars):
         pars.add_argument("--switcher", type=str, default="0", help="Select the DPI switch you want")
-        pars.add_argument("--size", type=float, default=128.0, help="Which size?")
-        pars.add_argument("--customsize", type=float, default=128.0, help="Custom size.")
+        pars.add_argument("--size", type=str, default="128", help="Which size?")
+        pars.add_argument("--customsize", type=str, default=20, help="Custom size.")
+
+    def parse_arguments(self):
+        """Parse arguments to set variables."""
+        svg = self.svg
+        # self.current_height = float(svg.get("height"))
+        # self.current_width = float(svg.get("width"))
+        self.current_size = float(svg.get("height"))
+        if self.options.size == "128":
+            self.target_size = 128.0
+        if self.options.size == "512":
+            self.target_size = 512.0
+        if self.options.size == "custom":
+            self.target_size = float(self.options.customsize)
+        self.factor_a = self.target_size / self.current_size
 
     # dictionaries of unit to user unit conversion factors
     __uuconvLegacy = {
@@ -258,9 +274,9 @@ class DPISwitcher(inkex.EffectExtension):
 
         svg = self.svg
         if svg.get("height"):
-            svg.set("height", str(512.0))
+            svg.set("height", str(self.target_size))
         if svg.get("width"):
-            svg.set("width", str(512.0))
+            svg.set("width", str(self.target_size))
 
         # update viewBox
         if svg.get("viewBox"):
@@ -364,9 +380,8 @@ class DPISwitcher(inkex.EffectExtension):
 
     def effect(self):
         svg = self.svg
-        testvar = float(svg.get("height"))
         if self.options.switcher == "0":
-            self.factor_a = 512.0 / testvar
+            self.factor_a = 96.0 / 90.0
             self.factor_b = 90.0 / 96.0
         svg.namedview.set("inkscape:document-units", "px")
         self.units = self.parse_length(svg.get("width"))[1]
